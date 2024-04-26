@@ -1,9 +1,8 @@
-// Iniciando
 const barbearia = {
     cortes: [
       { id: 1, tipo: "Militar", valor: 20.0 },
       { id: 2, tipo: "Samurai", valor: 35.0 },
-      { id: 3, tipo: "Pompadour", valor: 20 },
+      { id: 3, tipo: "Pompadour", valor: 20.0 },
       { id: 4, tipo: "Moicano", valor: 0 },
       { id: 5, tipo: "Razor part", valor: 0 },
     ],
@@ -17,9 +16,8 @@ const barbearia = {
     ],
     estaAberto: true,
 };
-  
 function buscaCortePorId(id) {
-    for (const corte of barbearia.cortes) {
+    for (let corte of barbearia.cortes) {
       if (corte.id === id) {
         return corte;
       }
@@ -28,7 +26,7 @@ function buscaCortePorId(id) {
 }
   
 function buscaBarbaPorId(id) {
-    for (const barba of barbearia.barbas) {
+    for (let barba of barbearia.barbas) {
       if (barba.id === id) {
         return barba;
       }
@@ -38,51 +36,44 @@ function buscaBarbaPorId(id) {
   
 function verificaStatusBarbearia() {
     return barbearia.estaAberto ? "Estamos abertos" : "Estamos fechados";
-}
+  }
   
-function retornaTodosCortes() {
+  function retornaTodosCortes() {
     return barbearia.cortes;
-}
+  }
   
-function retornaTodasBarbas() {
+  function retornaTodasBarbas() {
     return barbearia.barbas;
 }
   
 function criaPedido(nomeCliente, corteId, barbaId) {
-    const pedido = {};
-    pedido.nome = nomeCliente;
     const corte = buscaCortePorId(corteId);
     const barba = buscaBarbaPorId(barbaId);
-    pedido.pedidoCorte = corte.tipo;
-    pedido.pedidoCortePreco = corte.valor;
-    pedido.pedidoBarba = barba.tipo;
-    pedido.pedidoBarbaPreco = barba.valor;
+  
+    const pedido = {
+      nome: nomeCliente,
+      pedidoCorte: corte.tipo,
+      pedidoCortePreco: corte.valor,
+      pedidoBarba: barba.tipo,
+      pedidoBarbaPreco: barba.valor,
+    };
+  
     return pedido;
 }
   
-function atualizaPedido(lista, idPedido, valor, tipo) {
-    const pedido = lista.find(item => item.idPedido === idPedido);
-    if (!pedido) {
-      return "Pedido não encontrado.";
+function atualizaServico(lista, id, tipo, valor) {
+    for (let item of lista) {
+      if (item.id === id) {
+        item.tipo = tipo;
+        item.valor = valor;
+        break;
+      }
     }
-  
-    if (tipo === "corte") {
-      pedido.pedidoCortePreco = valor;
-    } else if (tipo === "barba") {
-      pedido.pedidoBarbaPreco = valor;
-    } else {
-      return "Tipo de item inválido.";
-    }
-  
-    // Retornar o pedido atualizado
-    return pedido;
+    return lista;
 }
-
-
-  
   
 function calculaTotal(pedido) {
     return pedido.pedidoCortePreco + pedido.pedidoBarbaPreco;
 }
-
+  
   
