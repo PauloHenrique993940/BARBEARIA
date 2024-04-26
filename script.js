@@ -61,12 +61,12 @@ function criaPedido(nomeCliente, corteId, barbaId) {
     return pedido;
 }
   
-function atualizaServico(lista, id, tipo, valor) {
+function atualizarServico(lista, id, tipo, valor) {
     for (let item of lista) {
       if (item.id === id) {
         item.tipo = tipo;
         item.valor = valor;
-        break;
+      
       }
     }
     return lista;
