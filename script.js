@@ -1,4 +1,4 @@
-//niciando
+// Iniciando
 const barbearia = {
     cortes: [
       { id: 1, tipo: "Militar", valor: 20.0 },
@@ -60,19 +60,29 @@ function criaPedido(nomeCliente, corteId, barbaId) {
     return pedido;
 }
   
-function atualizaPedido(lista, id, novoTipo, novoValor) {
-    for (const item of lista) {
-      if (item.id === id) {
-        item.tipo = novoTipo;
-        item.valor = novoValor;
-        break;
-      }
+function atualizaPedido(lista, idPedido, valor, tipo) {
+    const pedido = lista.find(item => item.idPedido === idPedido);
+    if (!pedido) {
+      return "Pedido não encontrado.";
     }
-    return lista;
+  
+    if (tipo === "corte") {
+      pedido.pedidoCortePreco = valor;
+    } else if (tipo === "barba") {
+      pedido.pedidoBarbaPreco = valor;
+    } else {
+      return "Tipo de item inválido.";
+    }
+  
+    // Retornar o pedido atualizado
+    return pedido;
 }
+
+
+  
   
 function calculaTotal(pedido) {
     return pedido.pedidoCortePreco + pedido.pedidoBarbaPreco;
 }
-  
+
   
