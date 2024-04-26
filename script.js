@@ -60,7 +60,7 @@ function criaPedido(nomeCliente, corteId, barbaId) {
     return pedido;
 }
   
-function atualizaServico(lista, id, novoTipo, novoValor) {
+function atualizaPedido(lista, id, novoTipo, novoValor) {
     for (const item of lista) {
       if (item.id === id) {
         item.tipo = novoTipo;
